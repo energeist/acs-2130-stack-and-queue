@@ -54,7 +54,6 @@ if __name__ == '__main__':
     print(f"Size: {queue.size()}")
     print(f"Empty? {queue.is_empty()}")
     print(f"Front: {queue.front()}")
-
     print("dequeue 2 elements")
     print(queue.dequeue()) # Stack should get flipped and should return 1
     print(queue.dequeue()) # Should return 2
