@@ -5,19 +5,24 @@ class Queue(object):
         self.items = LinkedList()
 
     def size(self):
+        # O(n) worst case
         return self.items.length()
 
     def is_empty(self):
+        # O(n) worst case
         return self.items.length() == 0
     
     def front(self):
         # O(1) worst case time complexity
-        return self.items.head
+        if self.items.head:
+            return self.items.head
 
     def enqueue(self, item):
+        # O(1) worst case time complexity
         self.items.append(item)
 
     def dequeue(self):
+        # O(1) worst case time complexity
         item = self.items.head
         self.items.head = item.next
         item.next = None

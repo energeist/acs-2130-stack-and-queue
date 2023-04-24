@@ -1,6 +1,6 @@
 from ll_stack import Stack
 
-class QueueFromTwoStacks():
+class QueueFromTwoStacks:
     # We will use two stacks, one to push to and one to pop from.
     # We will continuously push to one stack until we want to pop. 
     # If the second stack is empty then the first stack is reversed onto a second stack
@@ -14,6 +14,15 @@ class QueueFromTwoStacks():
     def __init__(self):
         self.first_stack = Stack()
         self.second_stack = Stack()
+        
+    def size(self):
+        return (self.first_stack.size() + self.second_stack.size())
+    
+    def is_empty(self):
+        return (self.first_stack.size() + self.second_stack.size()) == 0
+        
+    def front(self):
+        pass
     
     def enqueue(self, item):
         # This is O(1) worst case
@@ -22,27 +31,31 @@ class QueueFromTwoStacks():
     def dequeue(self):
         # This becomes an O(n) operation instead of O(1) because we have to flip n items in the first stack
         if self.second_stack.is_empty():
-            while self.first_stack.items.length() > 0:
+            while not self.first_stack.is_empty():
                 # print(self.first_stack.items.length())
                 item = self.first_stack.pop().data
                 # print(item)
                 self.second_stack.push(item)
         return self.second_stack.pop().data
-        
-queue = QueueFromTwoStacks()
-print("enqueue 3 elements")
-queue.enqueue(1) # Stack compostion: TOP (1) BOTTOM
-queue.enqueue(2) # Stack compostion: TOP (1) -> (2) BOTTOM
-queue.enqueue(3) # Stack compostion: TOP (1) -> (2) -> (3) BOTTOM
-print("peek at top element")
-print(queue.first_stack.peek()) # Should return 3
 
-print("dequeue 2 elements")
-print(queue.dequeue()) # Stack should get flipped and should return (1)
-print(queue.dequeue()) # Should return (2)
+if __name__ == '__main__':        
+    queue = QueueFromTwoStacks()
+    print(f"Empty? {queue.is_empty()}")
+    print("enqueue 3 elements")
+    queue.enqueue(1) # Queue compostion: FRONT (1) BACK
+    queue.enqueue(2) # Queue compostion: FRONT (1) -> (2) BACK
+    queue.enqueue(3) # Queue compostion: FRONT (1) -> (2) -> (3) BACK
+    print(f"Size: {queue.size()}")
+    print(f"Empty? {queue.is_empty()}")
 
-queue.enqueue(4)
-queue.enqueue(5)
-print("peek at top element") # Should return 5
-print("dequeue 1 element")
-print(queue.dequeue()) # Should return 3
+    print("dequeue 2 elements")
+    print(queue.dequeue()) # Stack should get flipped and should return 1
+    print(queue.dequeue()) # Should return 2
+    print(f"Size: {queue.size()}")
+    print("enqueue 2 elements")
+    queue.enqueue(4)
+    queue.enqueue(5)
+    print(f"Size: {queue.size()}")
+    print("dequeue 1 element")
+    print(queue.dequeue()) # Should return 3
+    print(f"Size: {queue.size()}")
