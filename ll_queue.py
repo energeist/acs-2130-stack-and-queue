@@ -31,24 +31,23 @@ class Queue(object):
 my_queue = Queue()
 
 if __name__ == '__main__':
-    print("Size:")
-    print(my_queue.size())
-    print("Empty?")
-    print(my_queue.is_empty())
+    print(f"Size: {my_queue.size()}") # 0
+    print(f"Empty?: {my_queue.is_empty()}") # True
     print("Enqueueing")
     my_queue.enqueue(100)
     my_queue.enqueue(5)
     my_queue.enqueue(20)
-
-    print("Size:")
-    print(my_queue.size())
-
-    print("items:")
-    print(my_queue.items)
-
+    print(f"Size: {my_queue.size()}") # Should return 3
+    print(f"Front: {my_queue.front().data}")
+    print(f"items: FRONT || {my_queue.items}|| BACK") # FRONT || (100) -> (5) -> (20) -> || BACK
     print("dequeueing")
-    my_queue.dequeue()
-    print(my_queue.items.head)
-    my_queue.dequeue()
-
-    print(my_queue.items)
+    item = my_queue.dequeue().data
+    print(f"dequeued item: {item}") # should return 100
+    item = my_queue.dequeue().data
+    print(f"dequeued item: {item}") # should return 5
+    print(f"Size: {my_queue.size()}") # Should return 1
+    print(f"items: FRONT || {my_queue.items}|| BACK") # FRONT || (20) -> || BACK
+    my_queue.enqueue(99)
+    my_queue.enqueue(1234)
+    print(f"Size: {my_queue.size()}") # Should return 3
+    print(f"items: FRONT || {my_queue.items}|| BACK") # FRONT || (20) -> (99) -> (1234) || BACK
