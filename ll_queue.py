@@ -28,9 +28,9 @@ class Queue(object):
         item.next = None
         return item
 
-my_queue = Queue()
 
 if __name__ == '__main__':
+    my_queue = Queue()
     print(f"Size: {my_queue.size()}") # 0
     print(f"Empty?: {my_queue.is_empty()}") # True
     print("Enqueueing")
