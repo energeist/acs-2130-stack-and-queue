@@ -22,7 +22,13 @@ class QueueFromTwoStacks:
         return (self.first_stack.size() + self.second_stack.size()) == 0
         
     def front(self):
-        pass
+        if self.second_stack.is_empty():
+            while not self.first_stack.is_empty():
+                # print(self.first_stack.items.length())
+                item = self.first_stack.pop().data
+                # print(item)
+                self.second_stack.push(item)
+        return self.second_stack.peek()
     
     def enqueue(self, item):
         # This is O(1) worst case
@@ -47,6 +53,7 @@ if __name__ == '__main__':
     queue.enqueue(3) # Queue compostion: FRONT (1) -> (2) -> (3) BACK
     print(f"Size: {queue.size()}")
     print(f"Empty? {queue.is_empty()}")
+    print(f"Front: {queue.front()}")
 
     print("dequeue 2 elements")
     print(queue.dequeue()) # Stack should get flipped and should return 1
